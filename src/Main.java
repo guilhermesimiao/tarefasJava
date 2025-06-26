@@ -1,107 +1,87 @@
-/**
- * Programa de Gerenciamento de Tarefas
-
- * Este programa permite ao usuário:
- * - Informar quantas tarefas deseja adicionar;
- * - Inserir as tarefas manualmente;
- * - Escolher se deseja exibir as tarefas cadastradas;
- * - Decidir se deseja apagar alguma tarefa;
- * - Informar quantas tarefas deseja apagar e quais posições deseja limpar;
- * - Ver novamente a lista de tarefas, já com as alterações aplicadas.
-
- * As tarefas apagadas são substituídas pelo texto "APAGADA".
- * O programa trata entradas inválidas com mensagens de aviso e repetições de perguntas.
- */
-
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        int tarefasQuantidade = 0;
-        boolean teste = false;
-        int quantosApagar = 0;
+        ArrayList <String> lista = new ArrayList<>();
 
-        while (!teste) {
+        //menu
+        int[] menu = new int[6];
+        boolean teste = true;
 
-            System.out.println("Quantas tarefas deseja adicionar? ");
-            if (scan.hasNextInt()) {
-                tarefasQuantidade = scan.nextInt();
-                teste = true;
+        while (teste) {
 
-            } else {
-                System.out.println("Valor inválido");
-                scan.next();
-            }
-        }
+            System.out.println("Selecione uma opçao: ");
 
-        String[] vetorTarefa = new String[tarefasQuantidade];
-        scan.nextLine();
+            for (int i = 0; i < menu.length; i++) {
+                menu[i] = i;
 
-        for (int i = 0; i < tarefasQuantidade; i++){
-            System.out.print("Escreva sua tarefa: \n");
-                vetorTarefa[i] = scan.nextLine();
-        }
+                if (menu[i] == 0) {
+                    System.out.print("[" + i + "]" + " - SAIR\n");
 
-        System.out.println("Deseja exibir as tarefas registradas? (s/n)");
-            char exibirTarefa = scan.next().charAt(0);
+                } else if (menu[i] == 1) {
+                    System.out.print("[" + i + "]" + " - Criar Tarefas\n");
+                } else if (menu[i] == 2) {
+                    System.out.print("[" + i + "]" + " - Exibir Tarefas\n");
 
-        if(exibirTarefa != 's'){
-            System.out.println("Obrigado, até mais!");
+                } else if (menu[i] == 3) {
+                    System.out.print("[" + i + "]" + " - Editar Tarefas\n");
 
-        }else {
-            System.out.println("Suas tarefas");
+                } else if (menu[i] == 4) {
+                    System.out.print("[" + i + "]" + " - Concluir Tarefas\n");
 
-            for (int i = 0; i < vetorTarefa.length; i++){
-                System.out.println("Tarefa "+(i + 1) + "º - " + vetorTarefa[i]);
-            }
+                } else if (menu[i] == 5) {
+                    System.out.print("[" + i + "]" + " - Excluir Tarefas\n");
 
-            System.out.println("Deseja apagar alguma tarefa? (s/n)");
-                char opcaoApagar = scan.next().charAt(0);
 
-            if(opcaoApagar != 's'){
-                System.out.println("Obrigado, até mais!");
-
-            }else {
-
-                while (teste) {
-                    System.out.println("Qantas tarefas deseja apagar? ");
-                    if (scan.hasNextInt()) {
-                        quantosApagar = scan.nextInt();
-                        teste = false;
-
-                    } else {
-                        System.out.println("Valor inválido");
-                            scan.next();
-
-                    }
-
-                    for (int i = 0; i < quantosApagar; i++) {
-                        System.out.println("Digite a posição da tarefa para apagar (1 a " + vetorTarefa.length + "):");
-                            int pos = scan.nextInt();
-
-                        if (pos >= 1 && pos <= vetorTarefa.length) {
-                            vetorTarefa[pos - 1] = "APAGADA";
-                        } else {
-                            System.out.println("Posição inválida, ignorando.");
-                        }
-                    }
                 }
+            }
+            int escolhaUser = scan.nextInt();
 
-                System.out.println("Deseja exibir as tarefas registradas? (s/n)");
-                exibirTarefa = scan.next().charAt(0);
+            switch (escolhaUser) {
+                case 0:
+                    System.out.println("Salvando Informações...\nDados Salvos, Até mais!");
+                    teste = false;
+                    break;
 
-                if(exibirTarefa != 's'){
-                    System.out.println("Obrigado, até mais!");
+                case 1:
+                    System.out.println("Escreva sua tarefa: ");
+                        lista.add(scan.next());
+                    teste = Tarefas.voltarAoMenu(scan);
+                    break;
 
-                }else {
-                    System.out.println("Suas tarefas");
+                case 2:
+                    System.out.println("Exibindo tarefas...\n");
 
-                    for (int i = 0; i < vetorTarefa.length; i++) {
-                        System.out.println("Tarefa " + (i + 1) + "º - " + vetorTarefa[i]);
-                    }
-                }
+                    Tarefas.exibirLista(lista);
+                    teste = Tarefas.voltarAoMenu(scan);
+                    break;
+
+                case 3:
+                    System.out.println("Escolha a tarefa que deseja editar: ");
+
+                    Tarefas.exibirLista(lista);
+                    teste = Tarefas.voltarAoMenu(scan);
+                    break;
+
+                case 4:
+                    System.out.println("Escolha a tarefa que deseja concluir: ");
+
+                    Tarefas.exibirLista(lista);
+                    teste = Tarefas.voltarAoMenu(scan);
+                    break;
+
+                case 5:
+                    System.out.println("Escolha a tarefa que deseja excluir: ");
+
+                    Tarefas.exibirLista(lista);
+                    teste = Tarefas.voltarAoMenu(scan);
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
             }
         }
     }
