@@ -77,7 +77,7 @@ public class Main {
                     System.out.println("Escolha a tarefa que deseja excluir: ");
                     Tarefas.exibirLista(lista);
                     Tarefas.removePosicao(lista, scan);
-                    System.out.println("Tarefa removida.");
+                    System.out.println("Tarefa removida. ");
                     teste = Tarefas.voltarAoMenu(scan);
                     break;
 

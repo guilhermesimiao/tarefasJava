@@ -35,7 +35,7 @@ public class Tarefas {
             lista.remove(posicao - 1);
             System.out.println("Modificaçao realizada! ");
         }else {
-            System.out.println("Valor inválido, nenhuma tarefa foi alterada!");
+            System.out.println("Valor inválido, nenhuma tarefa foi alterada! ");
         }
     }
 
