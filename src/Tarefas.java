@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Tarefas {
 
@@ -42,15 +43,23 @@ public class Tarefas {
     public static void criaTarefa(ArrayList<String> lista, Scanner scan){
 
         int posicao;
-        posicao = scan.nextInt() - 1;
+        try {
+            System.out.println("Escolha o número da tarefa que deseja concluir: ");
+            posicao = scan.nextInt() - 1;
+            scan.nextLine();
 
-        if(posicao >= 0 && posicao <= lista.size()) {
-            System.out.println("Tarefa atual: " + lista.get(posicao));
-            System.out.println("Escreva a nova tarefa: ");
-            lista.set(posicao, scan.next());
+            if (posicao >= 0 && posicao <= lista.size()) {
+                System.out.println("Tarefa atual: " + lista.get(posicao));
 
-        }else {
-            System.out.println("Valor inválido, nenhuma tarefa foi alterada!");
+                System.out.println("Escreva a nova tarefa: ");
+                String novaTarefa = scan.nextLine();
+                lista.set(posicao, novaTarefa);
+            } else {
+                System.out.println("Valor inválido, nenhuma tarefa foi alterada!");
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Valor inexistente.");
+            scan.nextLine();
         }
     }
 }

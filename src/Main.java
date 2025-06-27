@@ -66,7 +66,6 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("Escolha a tarefa que deseja concluir: ");
                     Tarefas.exibirLista(lista);
                     Tarefas.removePosicao(lista, scan);
                     System.out.println("Parabéns, tarefa concluida!");
