@@ -58,14 +58,14 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Escolha a tarefa que deseja editar: ");
-                    Tarefas.exibirLista(lista);
                     Tarefas.criaTarefa(lista, scan);
+                    Tarefas.exibirLista(lista);
                     Tarefas.exibirLista(lista);
                     teste = Tarefas.voltarAoMenu(scan);
                     break;
 
                 case 4:
+                    System.out.println("Escolha a tarefa que deseja concluir: ");
                     Tarefas.exibirLista(lista);
                     Tarefas.removePosicao(lista, scan);
                     System.out.println("Parabéns, tarefa concluida!");

@@ -44,7 +44,7 @@ public class Tarefas {
 
         int posicao;
         try {
-            System.out.println("Escolha o número da tarefa que deseja concluir: ");
+            System.out.println("Escolha o número da tarefa que deseja editar: ");
             posicao = scan.nextInt() - 1;
             scan.nextLine();
 
