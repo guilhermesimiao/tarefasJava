@@ -58,9 +58,8 @@ public class Main {
                     break;
 
                 case 3:
+                    Tarefas.exibirLista(lista);
                     Tarefas.criaTarefa(lista, scan);
-                    Tarefas.exibirLista(lista);
-                    Tarefas.exibirLista(lista);
                     teste = Tarefas.voltarAoMenu(scan);
                     break;
 
