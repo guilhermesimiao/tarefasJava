@@ -12,7 +12,6 @@ public class Main {
         boolean teste = true;
 
         while (teste) {
-
             System.out.println("Selecione uma opçao: ");
 
             for (int i = 0; i < menu.length; i++) {
@@ -54,29 +53,31 @@ public class Main {
 
                 case 2:
                     System.out.println("Exibindo tarefas...\n");
-
                     Tarefas.exibirLista(lista);
                     teste = Tarefas.voltarAoMenu(scan);
                     break;
 
                 case 3:
                     System.out.println("Escolha a tarefa que deseja editar: ");
-
+                    Tarefas.exibirLista(lista);
+                    Tarefas.criaTarefa(lista, scan);
                     Tarefas.exibirLista(lista);
                     teste = Tarefas.voltarAoMenu(scan);
                     break;
 
                 case 4:
                     System.out.println("Escolha a tarefa que deseja concluir: ");
-
                     Tarefas.exibirLista(lista);
+                    Tarefas.removePosicao(lista, scan);
+                    System.out.println("Parabéns, tarefa concluida!");
                     teste = Tarefas.voltarAoMenu(scan);
                     break;
 
                 case 5:
                     System.out.println("Escolha a tarefa que deseja excluir: ");
-
                     Tarefas.exibirLista(lista);
+                    Tarefas.removePosicao(lista, scan);
+                    System.out.println("Tarefa removida.");
                     teste = Tarefas.voltarAoMenu(scan);
                     break;
 
